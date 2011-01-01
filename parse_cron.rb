@@ -2,7 +2,7 @@ require "pp"
 
 def parse_time_element(te,from,to)
   ret = []
-  
+
   if te =~ /^\d+$/
     ret << te.to_i
   elsif te =~ /^[*]$/
@@ -43,7 +43,7 @@ def parse_time_element(te,from,to)
     end
   else
     raise "Cannot parse: #{te}"
-  end 
+  end
   ret
 end
 
@@ -89,9 +89,10 @@ end
 
 
 # min hr day month week-day command
-# cron_jobs = ['*/15  11-14/2,16-19  */15 12 * whoami > /tmp/junk.whoami.txt']
+cron_jobs = ['*/15  *  *  1 * whoami','*/30  *  *  1 * uname' ]
 # cron_jobs = `crontab -l`
-cron_jobs = File.readlines("cronfile.txt")
+# cron_jobs = File.readlines("cronfile.txt")
+reverse_cron_hash = {}
 cron_jobs.each do |line|
   next if (line.strip.size == 0) || (line =~ /^\s*#/)
   min, hr, day, month, week_day, *cmd = line.strip.split
@@ -102,14 +103,28 @@ cron_jobs.each do |line|
 
     from, to = Time.now, Time.now + ((ARGV[0] ? ARGV[0].to_i : 1) * 60 * 60)
     arr = will_execute_when?(cron_entry,from,to)
-    if arr.size > 0
-      puts "---------------------"
-      puts line
-      puts "#{arr.size} run times between:\n#{from} and #{to}:"
-      pp arr
+
+    # if arr.size > 0
+      # puts "---------------------"
+      # puts line
+      # puts "#{arr.size} run times between:\n#{from} and #{to}:"
+      # pp arr
+    # end
+
+    arr.each do |time_element|
+      if reverse_cron_hash[time_element.to_s]
+        reverse_cron_hash[time_element.to_s] << cron_entry[-1] unless reverse_cron_hash[time_element.to_s].include?(cron_entry[-1])
+      else
+        reverse_cron_hash[time_element.to_s] = [cron_entry[-1]]
+      end
     end
+
   rescue
     puts "---------------------\n"  + line + ' ' + $!.to_s
   end
 end
+
+puts
+pp reverse_cron_hash.sort
+
 
