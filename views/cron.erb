@@ -18,10 +18,11 @@ function onLoad() {
     Timeline.createBandInfo({
         showEventText:  true,
         eventSource:    eventSource,
-        date:           "<%= Time.now.to_s %>",
-        width:          "70%", 
-        intervalUnit:   Timeline.DateTime.MINUTE, 
-        intervalPixels: 30
+        date:           "<%= (Time.now + 0.35 * 60 * 60).to_s %>",
+        width:          "90%",
+        timeZone:       -6,
+        intervalUnit:   Timeline.DateTime.MINUTE,
+        intervalPixels: 25
     }),
     Timeline.createBandInfo({
         overview:       true,
@@ -29,16 +30,17 @@ function onLoad() {
         trackHeight:    0.5,
         trackGap:       0.2,
         eventSource:    eventSource,
-        date:           "<%= Time.now.to_s %>",
-        width:          "30%", 
-        intervalUnit:   Timeline.DateTime.HOUR, 
+        date:           "<%= (Time.now + 0.05 * 60 * 60).to_s %>",
+        width:          "10%",
+        intervalUnit:   Timeline.DateTime.HOUR,
+        timeZone:       -6,
         intervalPixels: 100
     })
   ];
 
   bandInfos[1].syncWith = 0;
   bandInfos[1].highlight = true;
-
+  // bandInfos[1].setMinVisibleDate("<%= Time.now.to_s %>");
   tl = Timeline.create(document.getElementById("cron-timeline"), bandInfos);
 
   var event_data = <%= json %>;
@@ -60,9 +62,12 @@ function onResize() {
    </head>
    <body onload="onLoad();" onresize="onResize();">
      <br/>
-     Powered by <a href='http://www.simile-widgets.org/wiki/Timeline'>SIMILE Timeline</a> widget.<br/>
+     All times in Chicago, US / Central Time Zone (GMT -6).
      <br/>
-     <div id="cron-timeline" style="height: 150px; border: 1px solid #aaa"></div>
      <br/>
+     <div id="cron-timeline" style="height: 500px; border: 1px solid #aaa"></div>
+     <br/>
+     <br/>
+     Powered by <a href='http://www.simile-widgets.org/wiki/Timeline'>SIMILE Timeline</a> widget.
    </body>
  </html>
