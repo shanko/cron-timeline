@@ -120,7 +120,7 @@ def to_timeline_hash(cron_jobs,hour_window)
   events_arr = []
   chash.each do |key,val|
      val.each do |cmd|
-       events_arr << {"start" => key, "instant" => true, "title" => cmd, "description" => ""}
+       events_arr << {"start" => key, "instant" => true, "title" => cmd.split(' ')[0], "description" => cmd}
      end
   end
 
@@ -136,9 +136,9 @@ end
 
 if __FILE__ == $0
   # min hr day month week-day command
-  cron_jobs = ['*/15  *  *  1 * whoami','*/30  *  *  1 * uname' ]
+  # cron_jobs = ['*/15  *  *  1 * whoami','*/30  *  *  1 * uname' ]
   # cron_jobs = `crontab -l`
-  # cron_jobs = File.readlines("cronfile.txt")
+  cron_jobs = File.readlines("cronfile.txt")
 
   puts
   pp to_timeline_hash(cron_jobs,2)
