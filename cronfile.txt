@@ -1,0 +1,29 @@
+01 12 * * *     /usr/local/bin/chkrb
+*/2 * * * *     /usr/bin/add_host
+1 4 * * *       /var/www/prod/current/scriptsh
+# 
+
+*/20 * * * *    /usr/bin/cronsphinx
+*/30 * * * *    /usr/bin/cronsearchd
+1 */4  * * *    /usr/bin/DISK
+1 1 * * *       /usr/bin/backupsql
+1 15 * * *      /usr/bin/rotate_log
+*/5 * * * *     /usr/bin/monitor_mysql
+30 7 * * *      /usr/bin/feed_gen
+*/31 * * * *    /usr/bin/subreload
+*/15 * * * *    /usr/bin/loadchek
+*/45 * * * *    /usr/bin/apache_reload
+09 6 * * *      /usr/bin/getbounced.sh
+15 4 * * *      /usr/bin/getrun
+*/15 * * * *    /usr/bin/chkapache
+10 13 * * *     Feed.generate_lastest_feed
+11 09 09 1 *    /var/www/prod/current/lib/main_scheduler.rb
+01 07 02 1 *    /var/www/prod/current/lib/followup_scheduler.rb 
+09 17 * * *     /var/www/prod/current/lib/bounced_emails.rb
+20 20 * * *     /var/www/prod/current/lib/push_activities.rb
+*/30 * * 1 1-5  /var/www/prod/current/lib/trig_scheduler.rb
+55 21 28 * *    /var/www/prod/current/lib/gen_invoice.rb
+40 * * 8 *      /var/www/prod/current/lib/purge.rb
+1   1 * * *     /var/www/prod/current/lib/daily_activity_summary.rb
+25 21 * 1 *     /var/www/prod/current/lib/monit_app.rb
+05 21 * 1 *     /var/www/prod/current/lib/sync_exports.rb 
