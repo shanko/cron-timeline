@@ -1,0 +1,68 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+ <html>
+   <head>
+     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+     <script src="/timeline_js/timeline-api.js?bundle=true" type="text/javascript">
+     </script>
+
+     <script type="text/javascript">
+
+var tl;
+function onLoad() {
+
+  var eventSource = new Timeline.DefaultEventSource();
+  
+  var bandInfos = [
+    Timeline.createBandInfo({
+        showEventText:  true,
+        eventSource:    eventSource,
+        date:           "<%= Time.now.to_s %>",
+        width:          "70%", 
+        intervalUnit:   Timeline.DateTime.MINUTE, 
+        intervalPixels: 30
+    }),
+    Timeline.createBandInfo({
+        overview:       true,
+        showEventText:  false,
+        trackHeight:    0.5,
+        trackGap:       0.2,
+        eventSource:    eventSource,
+        date:           "<%= Time.now.to_s %>",
+        width:          "30%", 
+        intervalUnit:   Timeline.DateTime.HOUR, 
+        intervalPixels: 100
+    })
+  ];
+
+  bandInfos[1].syncWith = 0;
+  bandInfos[1].highlight = true;
+
+  tl = Timeline.create(document.getElementById("cron-timeline"), bandInfos);
+
+  var event_data = <%= json %>;
+  eventSource.loadJSON(event_data, document.location.href);
+
+}
+
+var resizeTimerID = null;
+function onResize() {
+    if (resizeTimerID == null) {
+        resizeTimerID = window.setTimeout(function() {
+            resizeTimerID = null;
+            tl.layout();
+        }, 500);
+    }
+}
+
+     </script>
+   </head>
+   <body onload="onLoad();" onresize="onResize();">
+     <br/>
+     Powered by <a href='http://www.simile-widgets.org/wiki/Timeline'>SIMILE Timeline</a> widget.<br/>
+     <br/>
+     <div id="cron-timeline" style="height: 150px; border: 1px solid #aaa"></div>
+     <br/>
+   </body>
+ </html>

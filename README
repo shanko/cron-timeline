@@ -1,0 +1,44 @@
+== Description
+
+A barebone Sinatra app to show the cron jobs on a timeline.
+
+Powered by SIMILE Timeline Widget: http://www.simile-widgets.org/wiki/Timeline.
+
+Tested on Ubuntu 10.10, FireFox 3.6.13, using ree-1.8.7-head with gemset:
+
+json_pure (1.4.6)
+rack (1.2.1)
+shotgun (0.8)
+sinatra (1.1.2)
+tilt (1.2.1)
+
+== Version
+
+0.0.1 (Jan 3rd, 2011)
+
+== Installation
+
+Install the required gems and then git clone git://github.com/shanko/misc.git
+
+== Usage
+
+$ shotgun cron_timeline.rb
+
+== ToDo
+
+* Improve the rendering of the timeline
+* RSpec examples
+* Documentation
+
+== Author
+
+Shashank Date <mailto:stdate@gmail.com>
+
+== License
+
+MIT license: http://www.opensource.org/licenses/mit-license.php
+
+
+
+
+
