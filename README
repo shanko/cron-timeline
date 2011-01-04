@@ -23,6 +23,7 @@ Install the required gems and then git clone git://github.com/shanko/misc.git
 == Usage
 
 $ shotgun cron_timeline.rb
+http://localhost:9393/cron
 
 == ToDo
 
