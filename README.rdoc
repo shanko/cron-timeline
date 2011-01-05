@@ -6,11 +6,11 @@ Powered by SIMILE Timeline Widget: http://www.simile-widgets.org/wiki/Timeline.
 
 Tested on Ubuntu 10.10, FireFox 3.6.13, using ree-1.8.7-head with gemset:
 
-json_pure (1.4.6)
-rack (1.2.1)
-shotgun (0.8)
-sinatra (1.1.2)
-tilt (1.2.1)
+* json_pure (1.4.6)
+* rack (1.2.1)
+* shotgun (0.8)
+* sinatra (1.1.2)
+* tilt (1.2.1)
 
 == Version
 
@@ -18,12 +18,20 @@ tilt (1.2.1)
 
 == Installation
 
-Install the required gems and then git clone git://github.com/shanko/misc.git
+Install the required gems and then <tt>git clone git://github.com/shanko/misc.git</tt>
 
 == Usage
 
-$ shotgun cron_timeline.rb
+<tt>$ shotgun cron_timeline.rb</tt>
 http://localhost:9393/cron
+
+The app will deploy to Heroku out-of-the-box:
+
+1. <tt>git clone git://github.com/shanko/misc.git</tt>
+2. <tt>cd misc</tt>
+3. <tt>heroku create</tt>
+
+It's up and running at http://cron-timeline.heroku.com if you want to see it for yourself.
 
 == ToDo
 
