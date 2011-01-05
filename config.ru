@@ -1,2 +1,2 @@
-require 'cron_timeline'
+require_relative 'cron_timeline'
 run Sinatra::Application

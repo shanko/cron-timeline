@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'json'
-require 'models/parse_cron'
+require_relative 'models/parse_cron'
 
 get "/" do
   "Hello from Sinatra on Heroku!"
