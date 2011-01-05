@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'json'
-require_relative 'models/parse_cron'
+require File.expand_path(File.join(File.dirname(__FILE__), 'models', 'parse_cron')) 
 
 get "/" do
   "Hello from Sinatra on Heroku!"
